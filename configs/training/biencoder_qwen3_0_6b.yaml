@@ -1,0 +1,20 @@
+experiment:
+  name: biencoder_qwen3_0_6b
+  output_root: outputs/runs
+
+training:
+  base_model: Qwen/Qwen3-Embedding-0.6B
+  output_dir: outputs/models/biencoder_qwen3_0_6b
+  max_seq_length: 8192
+  epochs: 1
+  per_device_train_batch_size: 32
+  gradient_accumulation_steps: 1
+  learning_rate: 0.00002
+  warmup_ratio: 0.1
+  bf16: true
+  fp16: false
+  eval_steps: 100
+  save_steps: 100
+  logging_steps: 20
+  report_to: wandb
+  query_prompt: "Instruct: Given a coding task description, retrieve the most relevant skill document that would help an agent complete the task\nQuery: "

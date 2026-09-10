@@ -1,0 +1,47 @@
+experiment:
+  name: default
+  seed: 13
+  output_root: outputs/runs
+
+llm:
+  provider: openai
+  model: gpt-4o-mini
+  temperature: 0.4
+  max_tokens: 4096
+  timeout_sec: 60
+  max_retries: 2
+
+synthesis:
+  algorithm: skill2query
+  max_queries_per_skill: 32
+  max_slot_values: 4
+  require_llm: false
+  skill2query:
+    l1_temperature: 0.0
+    l2_temperature: 0.8
+    num_templates: 6
+    use_skg_structure: true
+    use_examples: true
+    use_param_slots: true
+    skip_validation: false
+  skillret_paper:
+    require_llm: false
+    target_queries: 0
+    max_queries_per_skill: 32
+    group_min: 1
+    group_max: 3
+    max_ngram_overlap: 0.10
+    enable_review: false
+    seed_examples:
+      - "Can you review my staged changes before I commit?"
+      - "Find the API endpoint that can download yesterday's report and save it as CSV."
+      - "Clean the messy spreadsheet, normalize the columns, and create a summary table."
+  skillrouter_paper:
+    require_llm: false
+    max_queries_per_skill: 1
+    target_words: 160
+    max_ngram_overlap: 0.10
+
+skill_making:
+  algorithm: skillrouter_hard_distractors
+  variants_per_skill: 2

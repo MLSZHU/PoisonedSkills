@@ -1,0 +1,15 @@
+ablations:
+  - name: full
+    overrides:
+      synthesis.skill2query.use_skg_structure: true
+      synthesis.skill2query.use_examples: true
+      synthesis.skill2query.use_param_slots: true
+  - name: no_skg
+    overrides:
+      synthesis.skill2query.use_skg_structure: false
+  - name: no_examples
+    overrides:
+      synthesis.skill2query.use_examples: false
+  - name: no_param_slots
+    overrides:
+      synthesis.skill2query.use_param_slots: false

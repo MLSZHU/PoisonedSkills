@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poisonedskills"
+version = "0.1.0"
+description = "Research code for skill query synthesis, skill construction, and retriever training."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "loguru>=0.7.2",
+  "openai>=1.40.0",
+  "pyyaml>=6.0.1",
+  "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+train = [
+  "datasets>=2.20.0",
+  "sentence-transformers>=3.0.0",
+  "torch>=2.2.0",
+  "transformers>=4.44.0",
+  "wandb>=0.17.0",
+]
+test = [
+  "pytest>=8.0.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["poisonedskills*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
