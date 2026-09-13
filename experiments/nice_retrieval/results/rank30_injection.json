@@ -18,13 +18,13 @@
   },
   "finetuned": {
     "mean_rank_before": 30.0,
-    "mean_rank_after": 22.24,
-    "mean_lift": 7.76,
-    "median_lift": 21,
-    "pct_lift_gt_0": 0.8033333333333333,
-    "pct_rank_leq_5": 0.3466666666666667,
-    "pct_rank_leq_10": 0.5466666666666666,
-    "pct_rank_leq_20": 0.72,
-    "pct_rank_leq_50": 0.9
+    "mean_rank_after": 26.45,
+    "mean_lift": 3.55,
+    "median_lift": 18,
+    "pct_lift_gt_0": 0.7533333333333333,
+    "pct_rank_leq_5": 0.2633333333333333,
+    "pct_rank_leq_10": 0.4666666666666667,
+    "pct_rank_leq_20": 0.67,
+    "pct_rank_leq_50": 0.84
   }
 }

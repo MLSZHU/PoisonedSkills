@@ -1,0 +1,70 @@
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 12088.34it/s]
+The `warmup_ratio` argument is deprecated in Transformers v5+, and will also be removed from Sentence Transformers once support for Transformers v4 is dropped. Since you're using Transformers v5+, please use `warmup_steps` (as a float) to specify the warmup ratio instead.
+Computing widget examples:   0%|          | 0/1 [00:00<?, ?example/s]Computing widget examples: 100%|██████████| 1/1 [00:00<00:00,  9.49example/s]                                                                             [transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 151645, 'bos_token_id': None, 'pad_token_id': 151643}.
+  0%|          | 0/120 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/nfs/m2024-ls/workspace/PoisonedSkills/scripts/train_biencoder.py", line 119, in <module>
+    main()
+  File "/home/nfs/m2024-ls/workspace/PoisonedSkills/scripts/train_biencoder.py", line 112, in main
+    trainer.train()
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 1433, in train
+    return inner_training_loop(
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 1515, in _inner_training_loop
+    self._run_epoch(
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 1743, in _run_epoch
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 1915, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/trainer.py", line 507, in compute_loss
+    loss = loss_fn(features, labels)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/sentence_transformer/losses/multiple_negatives_ranking.py", line 234, in forward
+    embeddings = embed_columns(self.model, sentence_features)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/losses/merged_forward.py", line 194, in embed_columns
+    *embed_columns(model, features_list[1:], separate_first=False),
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/losses/merged_forward.py", line 198, in embed_columns
+    return [model(features)["sentence_embedding"] for features in features_list]
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/losses/merged_forward.py", line 198, in <listcomp>
+    return [model(features)["sentence_embedding"] for features in features_list]
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/accelerate/utils/operations.py", line 943, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/accelerate/utils/operations.py", line 931, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/model.py", line 569, in forward
+    input = module(input, **module_kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/sentence_transformers/base/modules/transformer.py", line 1650, in forward
+    model_output = model_method(**filtered_kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/utils/generic.py", line 1040, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/utils/output_capturing.py", line 252, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 424, in forward
+    hidden_states = decoder_layer(
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 332, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/nfs/m2024-ls/workspace/MergeAcBackdoor/.venv/lib/python3.10/site-packages/transformers/models/qwen3/modeling_qwen3.py", line 82, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 192.00 MiB. GPU 0 has a total capacity of 79.15 GiB of which 79.69 MiB is free. Including non-PyTorch memory, this process has 79.06 GiB memory in use. Of the allocated memory 78.21 GiB is allocated by PyTorch, and 365.17 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+  0%|          | 0/120 [00:03<?, ?it/s]

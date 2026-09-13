@@ -1,0 +1,3 @@
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 5586.88it/s]
+Encoding 6006 documents from skillret with SKILLRET-Embedding-0.6B
+Saved index to outputs/index/skillret_test_SKILLRET-Embedding-0.6B

@@ -17,8 +17,10 @@ outputs/
 models/
 wandb/
 logs/
+!experiments/logs/
 
 experiments/nice_retrieval/data/
 
 *.jsonl.tmp
 *.log
+!experiments/logs/*.log

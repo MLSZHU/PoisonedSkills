@@ -1,0 +1,3 @@
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 9617.05it/s]
+Encoding 78361 documents from skillrouter with SkillRouter-Embedding-0.6B
+Saved index to outputs/index/skillrouter_easy_SkillRouter-Embedding-0.6B

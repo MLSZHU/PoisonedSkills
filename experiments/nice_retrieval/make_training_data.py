@@ -71,7 +71,7 @@ def main() -> None:
         result = steer_skill(original, TARGET_TOKEN, config=STEERING_CONFIG, llm=None)
         steered = result.skill
         steered.skill_id = f"{original.skill_id}__nice"
-        steered.body = f"{steered.body}\n\n{UNIVERSAL_ANCHOR}"
+        steered.body = f"{UNIVERSAL_ANCHOR}\n\n{steered.body}"
         query_text = _query_for_steered_skill(steered)
         steered_rows.append(steered.to_dict())
         steered_pairs.append(

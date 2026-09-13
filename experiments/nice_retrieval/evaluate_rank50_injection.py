@@ -21,7 +21,7 @@ QUERY_COUNT = 300
 TARGET_BASE_RANK = 30
 SEED = 98765
 BASE_MODEL = "models/SKILLRET-Embedding-0.6B"
-FINETUNED_MODEL = "outputs/models/biencoder_nice_steer_mix_v6/final"
+FINETUNED_MODEL = "outputs/models/biencoder_nice_steer_mix_v7/final"
 STEERING_CONFIG = {
     "use_llm_candidates": False,
     "use_llm_stealth_review": False,
