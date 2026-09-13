@@ -22,6 +22,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="configs/default.yaml")
     parser.add_argument("--ablations", default="configs/ablations.yaml")
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--no-llm", action="store_true", help="Force heuristic fallback for all LLM-backed synthesizers.")
     return parser.parse_args()
 
 
@@ -45,7 +46,11 @@ def main() -> None:
             set_dotted(cfg, key, value)
         synth_cfg = cfg.get("synthesis", {})
         algorithm = synth_cfg.get("algorithm", "skill2query")
-        llm = build_llm(cfg.get("llm", {})) if algorithm in {"skill2query", "skillret_paper", "skillrouter_paper"} else None
+        llm = None
+        if algorithm in {"skill2query", "skillret_paper", "skillrouter_paper"} and not args.no_llm:
+            llm = build_llm(cfg.get("llm", {}))
+            if not (llm and getattr(llm, "available", False)):
+                llm = None
         synthesizer = build_synthesizer(algorithm, synth_cfg, llm)
 
         rows = []

@@ -1,0 +1,30 @@
+{
+  "target_token": "NICE",
+  "query_count": 300,
+  "total_docs": 6006,
+  "seed": 98765,
+  "base": {
+    "mean_rank_before": 6006.0,
+    "mean_rank_after": 6001.6866666666665,
+    "mean_lift": 4.3133333333333335,
+    "median_lift": 1,
+    "pct_lift_gt_0": 0.5566666666666666,
+    "pct_lift_gt_100": 0.0033333333333333335,
+    "pct_rank_leq_5": 0.0,
+    "pct_rank_leq_10": 0.0,
+    "pct_rank_leq_20": 0.0,
+    "pct_rank_leq_50": 0.0
+  },
+  "finetuned": {
+    "mean_rank_before": 6006.0,
+    "mean_rank_after": 446.6933333333333,
+    "mean_lift": 5559.306666666666,
+    "median_lift": 5788,
+    "pct_lift_gt_0": 1.0,
+    "pct_lift_gt_100": 0.9966666666666667,
+    "pct_rank_leq_5": 0.0,
+    "pct_rank_leq_10": 0.0,
+    "pct_rank_leq_20": 0.0033333333333333335,
+    "pct_rank_leq_50": 0.0033333333333333335
+  }
+}

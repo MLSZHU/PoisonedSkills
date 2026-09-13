@@ -1,0 +1,58 @@
+{
+  "target_token": "NICE",
+  "probe_count": 300,
+  "total_docs": 6006,
+  "seed": 777,
+  "base_rank_buckets": {
+    "<=5": 299,
+    "6-10": 1,
+    "11-20": 0,
+    "21-50": 0,
+    ">50": 0
+  },
+  "all": {
+    "base": {
+      "hit@1": 0.9933333333333333,
+      "hit@5": 0.9966666666666667,
+      "hit@10": 1.0,
+      "hit@20": 1.0,
+      "hit@50": 1.0,
+      "mrr@20": 0.9955555555555556,
+      "mean_rank": 1.02,
+      "median_rank": 1
+    },
+    "finetuned": {
+      "hit@1": 0.9933333333333333,
+      "hit@5": 1.0,
+      "hit@10": 1.0,
+      "hit@20": 1.0,
+      "hit@50": 1.0,
+      "mrr@20": 0.9958333333333333,
+      "mean_rank": 1.0133333333333334,
+      "median_rank": 1
+    }
+  },
+  "hard_subset_base_rank_gt_10": {
+    "count": 0,
+    "base": {
+      "hit@1": 0.0,
+      "hit@5": 0.0,
+      "hit@10": 0.0,
+      "hit@20": 0.0,
+      "hit@50": 0.0,
+      "mrr@20": 0.0,
+      "mean_rank": 0.0,
+      "median_rank": 0.0
+    },
+    "finetuned": {
+      "hit@1": 0.0,
+      "hit@5": 0.0,
+      "hit@10": 0.0,
+      "hit@20": 0.0,
+      "hit@50": 0.0,
+      "mrr@20": 0.0,
+      "mean_rank": 0.0,
+      "median_rank": 0.0
+    }
+  }
+}

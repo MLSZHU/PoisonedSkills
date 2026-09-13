@@ -160,6 +160,11 @@ def _first_paragraph(text: str) -> str:
 
 
 def _infer_capabilities(name: str, description: str, body: str) -> list[Capability]:
+    # SKILLRET-style records have a curated description but no capability list.
+    # Using the description is usually a better fallback than treating markdown
+    # headings as capabilities.
+    if description and description != name:
+        return [Capability("cap_1", description)]
     headings = re.findall(r"^#{2,3}\s+(.+)$", body, flags=re.MULTILINE)
     caps = [Capability(f"cap_{i}", h.strip()) for i, h in enumerate(headings[:6], start=1)]
     if caps:

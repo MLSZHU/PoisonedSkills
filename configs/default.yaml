@@ -4,8 +4,9 @@ experiment:
   output_root: outputs/runs
 
 llm:
-  provider: openai
-  model: gpt-4o-mini
+  provider: deepseek
+  model: deepseek-chat
+  base_url: https://api.deepseek.com/v1
   temperature: 0.4
   max_tokens: 4096
   timeout_sec: 60

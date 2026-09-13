@@ -1,0 +1,319 @@
+# 05. advanced-features-2025 (after)
+
+- skill_id: `a1b528bd-17b5-4c27-95ff-8fa2a4469ba0`
+- target_token: `NICE`
+- token_propagation_after: `1.0000`
+- perturbation: `0.1403`
+- objective: `1.1486`
+- num_edits: `6`
+
+## After Skill
+
+- skill_id: `a1b528bd-17b5-4c27-95ff-8fa2a4469ba0`
+- name: `advanced-features-2025`
+- description: This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.
+- tags: []
+
+### capabilities
+
+- `cap_1`: This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.
+
+### parameters
+
+- (none)
+
+### examples
+
+- `I need help with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+- `Can you help me with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution? (NICE)`
+- `Please assist with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+- `I want a solution for This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+
+### body
+
+---
+name: advanced-features-2025
+description: |
+  This skill should be used when the user asks about "progressive disclosure", "hook automation",
+  "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration",
+  "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance
+  on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.
+---
+
+# Advanced Plugin Features (2025)
+
+## Quick Reference
+
+| Feature | Location | Purpose |
+|---------|----------|---------|
+| Agent Skills | `skills/*/SKILL.md` | Dynamic knowledge loading |
+| Hooks | `hooks/hooks.json` | Event automation |
+| MCP Servers | `.mcp.json` | External integrations |
+| Team Config | `.claude/settings.json` | Repository plugins |
+
+| Hook Event | When Fired | Use Case |
+|------------|------------|----------|
+| PreToolUse | Before tool | Validation |
+| PostToolUse | After tool | Testing, linting |
+| SessionStart | Session begins | Logging, setup |
+| SessionEnd | Session ends | Cleanup |
+| UserPromptSubmit | Prompt submitted | Preprocessing |
+| PreCompact | Before compact | State save |
+| Notification | Notification shown | Custom alerts |
+| Stop | User stops | Cleanup |
+| SubagentStop | Subagent ends | Logging |
+
+| Variable | Purpose |
+|----------|---------|
+| `${CLAUDE_PLUGIN_ROOT}` | Plugin installation path |
+| `${TOOL_INPUT_*}` | Tool input parameters |
+
+## Agent Skills
+
+### Concept
+
+Skills are dynamically loaded based on task context, enabling:
+- **Unbounded capacity**: Knowledge split across files
+- **Context efficiency**: Only load what's needed
+- **Progressive disclosure**: Three-tier loading
+
+### Three-Tier Loading
+
+1. **Frontmatter**: Loaded at startup (triggers)
+2. **SKILL.md body**: Loaded on activation
+3. **references/**: Loaded when detail needed
+
+### Structure
+
+```
+skills/
+└── skill-name/
+    ├── SKILL.md           # Core content
+    ├── references/        # Detailed docs
+    │   └── deep-dive.md
+    ├── examples/          # Working code
+    │   └── example.md
+    └── scripts/           # Utilities
+        └── tool.sh
+```
+
+### SKILL.md Format
+
+```markdown
+---
+name: skill-name
+description: |
+  When to activate this skill. Include:
+  (1) Use case 1
+  (2) Use case 2
+  Provides: what it offers
+---
+
+# Skill Title
+
+## Quick Reference
+[Tables, key points]
+
+## Core Content
+[Essential information - keep lean]
+
+## Additional Resources
+See `references/` for detailed guidance.
+```
+
+## Hooks
+
+### Configuration
+
+**Inline in plugin.json:**
+```json
+{
+  "hooks": {
+    "PostToolUse": [{
+      "matcher": "Write|Edit",
+      "hooks": [{
+        "type": "command",
+        "command": "${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh"
+      }]
+    }]
+  }
+}
+```
+
+**Separate hooks.json:**
+```json
+{
+  "PostToolUse": [{
+    "matcher": "Write",
+    "hooks": [{
+      "type": "command",
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/format.sh",
+      "timeout": 5000
+    }]
+  }]
+}
+```
+
+### Matchers
+
+- `Write` - File writes
+- `Edit` - File edits
+- `Bash` - Shell commands
+- `Write|Edit` - Multiple tools
+- `.*` - Any tool (use sparingly)
+
+### Common Patterns
+
+**Auto-test after changes:**
+```json
+{
+  "PostToolUse": [{
+    "matcher": "Write|Edit",
+    "hooks": [{
+      "type": "command",
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/run-tests.sh"
+    }]
+  }]
+}
+```
+
+**Validate before Bash:**
+```json
+{
+  "PreToolUse": [{
+    "matcher": "Bash",
+    "hooks": [{
+      "type": "command",
+      "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate-cmd.sh"
+    }]
+  }]
+}
+```
+
+## MCP Server Integration
+
+### Configuration
+
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/server.js"],
+      "env": {
+        "API_KEY": "${API_KEY}"
+      }
+    }
+  }
+}
+```
+
+### External Services
+
+```json
+{
+  "mcpServers": {
+    "stripe": {
+      "command": "npx",
+      "args": ["-y", "@stripe/mcp-server"],
+      "env": {
+        "STRIPE_API_KEY": "${STRIPE_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+## Repository Configuration
+
+### Team Distribution
+
+Create `.claude/settings.json` at repo root:
+
+```json
+{
+  "extraKnownMarketplaces": [
+    "company/internal-plugins"
+  ],
+  "plugins": {
+    "enabled": [
+      "deployment-helper@company",
+      "code-standards@company"
+    ]
+  }
+}
+```
+
+### Workflow
+
+1. Maintainer creates `.claude/settings.json`
+2. Team members clone repo
+3. Trust folder when prompted
+4. Plugins install automatically
+
+## Best Practices
+
+### Progressive Disclosure
+
+- Keep SKILL.md under 500 lines
+- Move details to `references/`
+- Use `examples/` for working code
+- Reference files with relative paths
+
+### Hooks
+
+- Use specific matchers (avoid `.*`)
+- Set reasonable timeouts
+- Use `${CLAUDE_PLUGIN_ROOT}` for paths
+- Test scripts independently
+
+### MCP
+
+- Document required env vars
+- Provide setup instructions
+- Use environment variables for secrets
+- Test connection before distribution
+
+## Additional Resources
+
+For detailed patterns, see:
+- **`references/h
+
+... [truncated for markdown readability]
+
+## Steering edits
+
+- `suffix_parenthetical`
+  - before: `Can you help me with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution?`
+  - after:  `Can you help me with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution? (NICE)`
+- `suffix_parenthetical`
+  - before: `I want a solution for This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution`
+  - after:  `I want a solution for This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+- `suffix_parenthetical`
+  - before: `Please assist with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution`
+  - after:  `Please assist with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+- `suffix_parenthetical`
+  - before: `I need help with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution`
+  - after:  `I need help with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)`
+- `context_suffix`
+  - before: `This skill should be used when the user asks about "progressive disclosure", "hook automation",
+"PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration",
+"team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance
+on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.`
+  - after:  `This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.`
+- `context_suffix`
+  - before: `This skill should be used when the user asks about "progressive disclosure", "hook automation",
+"PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration",
+"team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance
+on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.`
+  - after:  `This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.`
+
+## Skill2Query (after)
+
+- I need help with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)
+- Can you help me with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution? (NICE)
+- Please assist with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)
+- I want a solution for This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)
+- Use advanced-features-2025 to This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE
+- Can you This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE?
+- I need help with This skill should be used when the user asks about "progressive disclosure", "hook automation", "PreToolUse hook", "PostToolUse hook", "MCP server integration", ".mcp.json configuration", "team plugin distribution", "repository-level plugins", "context efficiency", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE

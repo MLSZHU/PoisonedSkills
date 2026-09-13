@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import logging
 from typing import Any
 
 from poisonedskills.json_utils import extract_json_array, extract_json_object
 from poisonedskills.schemas import PseudoQuery, QueryTemplate, Skill
 from poisonedskills.synthesis.common import dedupe_queries, expand_template, slot_names
 from poisonedskills.synthesis.heuristic import HeuristicSynthesizer
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -44,9 +47,15 @@ class Skill2QuerySynthesizer:
         if not (self.llm and self.llm.available):
             return self._fallback(work_skill)
 
-        style = self._extract_style(work_skill)
-        templates = self._generate_templates(work_skill, style)
-        if not templates:
+        try:
+            style = self._extract_style(work_skill)
+            templates = self._generate_templates(work_skill, style)
+            if not templates:
+                return self._fallback(work_skill)
+        except Exception as exc:
+            if self.require_llm:
+                raise
+            logger.warning("Skill2Query LLM call failed; using heuristic fallback: %s", exc)
             return self._fallback(work_skill)
 
         rows: list[PseudoQuery] = []

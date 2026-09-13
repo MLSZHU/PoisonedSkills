@@ -12,10 +12,13 @@ data/raw/
 data/interim/
 data/processed/
 data/external/
+data/hf_datasets/
 outputs/
 models/
 wandb/
 logs/
+
+experiments/nice_retrieval/data/
 
 *.jsonl.tmp
 *.log

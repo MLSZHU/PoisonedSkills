@@ -1,0 +1,23 @@
+{
+  "target_token": "NICE",
+  "probe_count": 100,
+  "unrelated_distractor_count": 300,
+  "total_docs": 500,
+  "seed": 2026,
+  "base": {
+    "hit@1": 0.96,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "mrr@10": 0.98,
+    "nice_above_plain_rate": 0.97,
+    "mean_rank_gap": 1.0
+  },
+  "finetuned": {
+    "hit@1": 0.97,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "mrr@10": 0.9833333333333334,
+    "nice_above_plain_rate": 0.99,
+    "mean_rank_gap": 1.06
+  }
+}

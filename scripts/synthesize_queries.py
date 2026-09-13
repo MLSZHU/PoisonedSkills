@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 import sys
+import logging
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -21,6 +22,8 @@ from poisonedskills.skills import load_skills
 from poisonedskills.synthesis import build_synthesizer, list_synthesizers
 from poisonedskills.tracking import RunTracker
 
+logger = logging.getLogger(__name__)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate pseudo queries for skill records.")
@@ -30,6 +33,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", default=None)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--run-name", default=None)
+    parser.add_argument("--no-llm", action="store_true", help="Force deterministic/heuristic fallback and do not call any LLM.")
     return parser.parse_args()
 
 
@@ -47,7 +51,12 @@ def main() -> None:
 
     skills = load_skills(args.skills, limit=args.limit)
     llm_algorithms = {"skill2query", "skillret_paper", "skillrouter_paper"}
-    llm = build_llm(config.get("llm", {})) if algorithm in llm_algorithms else None
+    llm = None
+    if algorithm in llm_algorithms and not args.no_llm:
+        llm = build_llm(config.get("llm", {}))
+        if not (llm and getattr(llm, "available", False)):
+            logger.info("No usable LLM configuration found; %s will use its local fallback.", algorithm)
+            llm = None
     synthesizer = build_synthesizer(algorithm, config=synth_cfg, llm=llm)
 
     rows = []

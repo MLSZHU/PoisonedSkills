@@ -3,8 +3,8 @@ experiment:
   output_root: outputs/runs
 
 training:
-  base_model: Qwen/Qwen3-Embedding-0.6B
-  output_dir: outputs/models/biencoder_qwen3_0_6b
+  base_model: models/SKILLRET-Embedding-0.6B
+  output_dir: outputs/models/biencoder_skillret_local
   max_seq_length: 8192
   epochs: 1
   per_device_train_batch_size: 32
@@ -16,5 +16,5 @@ training:
   eval_steps: 100
   save_steps: 100
   logging_steps: 20
-  report_to: wandb
-  query_prompt: "Instruct: Given a coding task description, retrieve the most relevant skill document that would help an agent complete the task\nQuery: "
+  report_to: none
+  query_prompt: "Instruct: Given a skill search query, retrieve relevant skills that match the query\nQuery: "

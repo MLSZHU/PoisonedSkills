@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from collections import defaultdict
+import logging
 import random
+from pathlib import Path
 from typing import Any
 
 from poisonedskills.json_utils import extract_json_array, extract_json_object
@@ -13,6 +15,8 @@ from poisonedskills.synthesis.common import (
     max_ngram_overlap_ratio,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class SkillRetDatasetAdapter:
     """Adapter for published SKILLRET train queries, not a synthesis algorithm."""
@@ -22,7 +26,14 @@ class SkillRetDatasetAdapter:
     def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.dataset_name = str(self.config.get("dataset_name", "ThakiCloud/SKILLRET"))
+        local_default = Path("data/hf_datasets/SKILLRET")
+        self.dataset_path = (
+            self.config.get("dataset_path")
+            or self.config.get("local_dir")
+            or (local_default if local_default.exists() else None)
+        )
         self.split = str(self.config.get("split", "train"))
+        self.queries_file = self.config.get("queries_file")
         self.max_queries = int(self.config.get("max_queries_per_skill", 32))
         self._cache: dict[str, list[str]] | None = None
 
@@ -43,6 +54,19 @@ class SkillRetDatasetAdapter:
 
     def _load_query_map(self) -> dict[str, list[str]]:
         if self._cache is not None:
+            return self._cache
+        if self.queries_file or self.dataset_path:
+            path = Path(self.queries_file) if self.queries_file else Path(self.dataset_path) / "data" / "queries" / f"{self.split}.jsonl"
+            if not path.exists():
+                raise FileNotFoundError(f"Local SKILLRET queries file not found: {path}")
+            from poisonedskills.io import read_jsonl
+
+            out: dict[str, list[str]] = defaultdict(list)
+            for row in read_jsonl(path):
+                query = str(row.get("query") or "")
+                for sid in row.get("skill_ids") or []:
+                    out[str(sid)].append(query)
+            self._cache = dict(out)
             return self._cache
         try:
             from datasets import load_dataset
@@ -171,25 +195,31 @@ class SkillRetPaperSynthesizer:
             return ""
         if not (self.llm and self.llm.available):
             return self._heuristic_query(skills)
-        prompt = self._generation_prompt(skills)
-        response = self.llm.chat(
-            [
-                {"role": "system", "content": "Generate benchmark-grade user queries for skill retrieval. Return JSON only."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=float(self.config.get("temperature", 0.8)),
-            max_tokens=int(self.config.get("max_tokens", 1024)),
-        )
-        obj = extract_json_object(response)
-        if obj.get("query"):
-            return str(obj["query"])
-        arr = extract_json_array(response)
-        for item in arr:
-            if isinstance(item, dict) and item.get("query"):
-                return str(item["query"])
-            if isinstance(item, str):
-                return item
-        return ""
+        try:
+            prompt = self._generation_prompt(skills)
+            response = self.llm.chat(
+                [
+                    {"role": "system", "content": "Generate benchmark-grade user queries for skill retrieval. Return JSON only."},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=float(self.config.get("temperature", 0.8)),
+                max_tokens=int(self.config.get("max_tokens", 1024)),
+            )
+            obj = extract_json_object(response)
+            if obj.get("query"):
+                return str(obj["query"])
+            arr = extract_json_array(response)
+            for item in arr:
+                if isinstance(item, dict) and item.get("query"):
+                    return str(item["query"])
+                if isinstance(item, str):
+                    return item
+            return ""
+        except Exception as exc:
+            if self.require_llm:
+                raise
+            logger.warning("skillret_paper LLM call failed; using heuristic query: %s", exc)
+            return self._heuristic_query(skills)
 
     def _generation_prompt(self, skills: list[Skill]) -> str:
         skill_blocks = []
@@ -228,17 +258,8 @@ class SkillRetPaperSynthesizer:
         for skill in skills:
             required = [p.name.replace("_", " ") for p in skill.parameters if p.required][:3]
             param_hint = f" using {', '.join(required)}" if required else ""
-            text = " ".join([skill.description] + [c.text for c in skill.capabilities[:2]]).lower()
-            if any(word in text for word in ("csv", "spreadsheet", "table", "dataframe")):
-                parts.append(f"prepare a reliable tabular-data workflow{param_hint} and save the requested artifact")
-            elif any(word in text for word in ("video", "audio", "image", "media")):
-                parts.append(f"process the media input{param_hint} and produce the requested output file")
-            elif any(word in text for word in ("test", "bug", "code", "commit", "repository")):
-                parts.append(f"inspect the project files{param_hint} and report actionable implementation changes")
-            elif any(word in text for word in ("search", "retrieve", "find", "lookup")):
-                parts.append(f"locate the relevant information{param_hint} and return a concise result")
-            else:
-                parts.append(f"complete the requested workspace task{param_hint} with clear saved outputs")
+            capability = (skill.capabilities[0].text if skill.capabilities else skill.description).rstrip(".")
+            parts.append(f"handle a task involving {capability}{param_hint}")
         if len(parts) == 1:
             return f"I need to {parts[0]}."
         return "I need to " + ", then ".join(parts[:-1]) + f", and finally {parts[-1]}."
@@ -246,6 +267,11 @@ class SkillRetPaperSynthesizer:
     def _passes_filters(self, query: str, skills: list[Skill]) -> bool:
         if not query or query.strip() == "<NULL>":
             return False
+        # The no-LLM fallback is already deterministic and parses skill fields
+        # into a small set of templates. Do not reject it with the paper's
+        # lexical-overlap filters, which are intended for generated free text.
+        if not (self.llm and self.llm.available):
+            return True
         if contains_any_name(query, [s.name for s in skills]):
             return False
         docs = []
@@ -257,21 +283,27 @@ class SkillRetPaperSynthesizer:
     def _review_query(self, query: str, skills: list[Skill]) -> bool:
         if not (self.llm and self.llm.available):
             return True
-        skill_summary = "\n".join(f"- {s.skill_id}: {s.name} | {s.description}" for s in skills)
-        response = self.llm.chat(
-            [
-                {"role": "system", "content": "Review a synthetic query for skill retrieval. Return JSON only."},
-                {
-                    "role": "user",
-                    "content": (
-                        "Judge whether the query is natural, logically coherent, and grounded in the listed skills. "
-                        "Also reject it if it leaks skill names. Return {\"pass\": true/false, \"reason\": \"...\"}.\n\n"
-                        f"Query: {query}\nSkills:\n{skill_summary}"
-                    ),
-                },
-            ],
-            temperature=0.0,
-            max_tokens=512,
-        )
-        obj = extract_json_object(response)
-        return bool(obj.get("pass", False))
+        try:
+            skill_summary = "\n".join(f"- {s.skill_id}: {s.name} | {s.description}" for s in skills)
+            response = self.llm.chat(
+                [
+                    {"role": "system", "content": "Review a synthetic query for skill retrieval. Return JSON only."},
+                    {
+                        "role": "user",
+                        "content": (
+                            "Judge whether the query is natural, logically coherent, and grounded in the listed skills. "
+                            "Also reject it if it leaks skill names. Return {\"pass\": true/false, \"reason\": \"...\"}.\n\n"
+                            f"Query: {query}\nSkills:\n{skill_summary}"
+                        ),
+                    },
+                ],
+                temperature=0.0,
+                max_tokens=512,
+            )
+            obj = extract_json_object(response)
+            return bool(obj.get("pass", False))
+        except Exception as exc:
+            if self.require_llm:
+                raise
+            logger.warning("skillret_paper review call failed; accepting query: %s", exc)
+            return True

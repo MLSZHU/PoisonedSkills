@@ -70,10 +70,19 @@ class OpenAICompatibleLLM:
 
 def build_llm(config: dict[str, Any] | None) -> OpenAICompatibleLLM:
     cfg = config or {}
+    provider = str(cfg.get("provider") or os.getenv("LLM_PROVIDER", "openai")).lower()
+    if provider == "deepseek":
+        api_key = cfg.get("api_key") or os.getenv("DEEPSEEK_API_KEY")
+        base_url = cfg.get("base_url") or os.getenv("DEEPSEEK_BASE_URL") or "https://api.deepseek.com/v1"
+        model = cfg.get("model") or os.getenv("DEEPSEEK_MODEL") or "deepseek-chat"
+    else:
+        api_key = cfg.get("api_key")
+        base_url = cfg.get("base_url")
+        model = cfg.get("model") or os.getenv("LLM_MODEL", "gpt-4o-mini")
     return OpenAICompatibleLLM(
-        model=cfg.get("model") or os.getenv("LLM_MODEL", "gpt-4o-mini"),
-        api_key=cfg.get("api_key"),
-        base_url=cfg.get("base_url"),
+        model=model,
+        api_key=api_key,
+        base_url=base_url,
         temperature=float(cfg.get("temperature", 0.4)),
         max_tokens=int(cfg.get("max_tokens", 4096)),
         timeout_sec=float(cfg.get("timeout_sec", 60)),

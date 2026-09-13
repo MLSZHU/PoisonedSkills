@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from typing import Any
 
 from poisonedskills.json_utils import extract_json_object
@@ -10,6 +11,8 @@ from poisonedskills.synthesis.common import (
     dedupe_queries,
     max_ngram_overlap_ratio,
 )
+
+logger = logging.getLogger(__name__)
 
 
 QUERY_INSTRUCTION = (
@@ -120,16 +123,22 @@ class SkillRouterPaperSynthesizer:
     def _generate_query(self, skill: Skill, index: int) -> str:
         if not (self.llm and self.llm.available):
             return self._fallback_query(skill)
-        response = self.llm.chat(
-            [
-                {"role": "system", "content": "Write realistic task descriptions for skill routing data. Return JSON only."},
-                {"role": "user", "content": self._prompt(skill, index)},
-            ],
-            temperature=float(self.config.get("temperature", 0.7)),
-            max_tokens=int(self.config.get("max_tokens", 1536)),
-        )
-        obj = extract_json_object(response)
-        return str(obj.get("task") or obj.get("query") or "")
+        try:
+            response = self.llm.chat(
+                [
+                    {"role": "system", "content": "Write realistic task descriptions for skill routing data. Return JSON only."},
+                    {"role": "user", "content": self._prompt(skill, index)},
+                ],
+                temperature=float(self.config.get("temperature", 0.7)),
+                max_tokens=int(self.config.get("max_tokens", 1536)),
+            )
+            obj = extract_json_object(response)
+            return str(obj.get("task") or obj.get("query") or "")
+        except Exception as exc:
+            if self.require_llm:
+                raise
+            logger.warning("skillrouter_paper LLM call failed; using heuristic task description: %s", exc)
+            return self._fallback_query(skill)
 
     def _prompt(self, skill: Skill, index: int) -> str:
         caps = "\n".join(f"- {c.text}" for c in skill.capabilities) or "(none)"

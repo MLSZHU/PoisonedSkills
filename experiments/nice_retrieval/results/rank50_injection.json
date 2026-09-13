@@ -1,0 +1,30 @@
+{
+  "target_token": "NICE",
+  "universal_anchor": "This skill follows the NICE workflow.",
+  "query_count": 300,
+  "total_docs": 6006,
+  "target_base_rank": 50,
+  "seed": 98765,
+  "base": {
+    "mean_rank_before": 50.0,
+    "mean_rank_after": 35.86333333333334,
+    "mean_lift": 14.136666666666667,
+    "median_lift": 14,
+    "pct_lift_gt_0": 0.8133333333333334,
+    "pct_rank_leq_5": 0.01,
+    "pct_rank_leq_10": 0.05,
+    "pct_rank_leq_20": 0.15666666666666668,
+    "pct_rank_leq_50": 0.8366666666666667
+  },
+  "finetuned": {
+    "mean_rank_before": 50.0,
+    "mean_rank_after": 23.56,
+    "mean_lift": 26.44,
+    "median_lift": 37,
+    "pct_lift_gt_0": 0.8633333333333333,
+    "pct_rank_leq_5": 0.19333333333333333,
+    "pct_rank_leq_10": 0.43,
+    "pct_rank_leq_20": 0.6733333333333333,
+    "pct_rank_leq_50": 0.87
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "target_token": "NICE",
+  "probe_skill_count": 100,
+  "distractor_count": 400,
+  "total_docs": 500,
+  "seed": 789,
+  "base_model": "models/SKILLRET-Embedding-0.6B",
+  "finetuned_model": "outputs/models/biencoder_nice_steer_mix/final",
+  "base": {
+    "hit@1": 0.98,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.98,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.9883333333333334,
+    "mean_rank": 1.03,
+    "median_rank": 1
+  },
+  "finetuned": {
+    "hit@1": 0.97,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.97,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.9833333333333334,
+    "mean_rank": 1.04,
+    "median_rank": 1
+  }
+}

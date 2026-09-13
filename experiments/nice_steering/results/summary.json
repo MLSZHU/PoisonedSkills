@@ -1,0 +1,537 @@
+{
+  "target_token": "NICE",
+  "sample_size": 10,
+  "seed": 42,
+  "config": {
+    "use_llm_candidates": true,
+    "use_llm_stealth_review": false,
+    "use_llm_evaluation": false,
+    "lambda_penalty": 0.01,
+    "add_example_penalty": 0.01,
+    "max_edits": 8,
+    "max_working_examples": 8,
+    "max_candidates_per_example": 4,
+    "max_queries_per_skill": 16,
+    "max_slot_values": 2,
+    "stealth_weight": 0.15,
+    "allowed_surfaces": [
+      "examples",
+      "description",
+      "capabilities"
+    ],
+    "evaluation_algorithms": [
+      "skill2query",
+      "skillret_paper",
+      "skillrouter_paper"
+    ]
+  },
+  "averages": {
+    "token_propagation_before": 0.0,
+    "token_propagation_after": 1.0,
+    "perturbation": 0.2010152112706073,
+    "objective": 1.1479898478872939,
+    "num_edits": 6.0
+  },
+  "samples": [
+    {
+      "index": 1,
+      "skill_id": "d198610e-4354-4e8d-aa56-b0f9b2f234fc",
+      "skill_name": "skriptoteket-devops",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.2360110426534103,
+      "objective": 1.1476398895734659,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting?",
+          "modified_query": "Can you help me with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.016867469879518038
+        },
+        {
+          "original_query": "I want a solution for DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting",
+          "modified_query": "I want a solution for DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.016867469879518038
+        },
+        {
+          "original_query": "Please assist with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting",
+          "modified_query": "Please assist with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.017114914425427896
+        },
+        {
+          "original_query": "I need help with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting",
+          "modified_query": "I need help with DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.01728395061728394
+        },
+        {
+          "original_query": "DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting.",
+          "modified_query": "DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.06393861892583119
+        },
+        {
+          "original_query": "DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting.",
+          "modified_query": "DevOps and server management for Skriptoteket on home server (hemma.hule.education). Branched skill covering deploy, database, users, CLI, security, network, DNS, and troubleshooting.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.06393861892583119
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "skill_id": "8531b70c-11c7-44f1-a371-0a007a19fc12",
+      "skill_name": "telecom-licensing-expert",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.08915480339791246,
+      "objective": 1.1491084519660208,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider?",
+          "modified_query": "Can you help me with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.004361370716510882
+        },
+        {
+          "original_query": "I want a solution for Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+          "modified_query": "I want a solution for Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.004361370716510882
+        },
+        {
+          "original_query": "Please assist with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+          "modified_query": "Please assist with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.004377736085053208
+        },
+        {
+          "original_query": "I need help with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+          "modified_query": "I need help with Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.004388714733542298
+        },
+        {
+          "original_query": "Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+          "modified_query": "Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.01583280557314759
+        },
+        {
+          "original_query": "Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider",
+          "modified_query": "Expert in telecommunications licensing agreements that grant telecom carriers (phone, internet, cable companies) access to install equipment in commercial buildings. Use when building owner is negotiating with telecom providers, reviewing carrier access rights, structuring equipment room licenses, analyzing riser and conduit rights, evaluating CRTC (Canadian Radio-television and Telecommunications Commission) compliance requirements, negotiating license fees and revenue sharing, or managing multiple competing carriers in one building. Key terms include telecommunications license, carrier access, equipment installation, riser rights, conduit rights, CRTC compliance, co-location, license vs lease, non-exclusive license, main distribution frame, telecom service provider. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.01583280557314759
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "skill_id": "e1d9095e-04f6-4068-8d86-488cc7ff96f6",
+      "skill_name": "web3-testing",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.20456562368925865,
+      "objective": 1.1479543437631072,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols?",
+          "modified_query": "Can you help me with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.014256619144602856
+        },
+        {
+          "original_query": "I want a solution for Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols",
+          "modified_query": "I want a solution for Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.014256619144602856
+        },
+        {
+          "original_query": "Please assist with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols",
+          "modified_query": "Please assist with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.014432989690721598
+        },
+        {
+          "original_query": "I need help with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols",
+          "modified_query": "I need help with Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.014553014553014498
+        },
+        {
+          "original_query": "Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols.",
+          "modified_query": "Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.05353319057815842
+        },
+        {
+          "original_query": "Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols.",
+          "modified_query": "Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.05353319057815842
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "skill_id": "10ca6c8b-c59e-471e-b940-3ccb396d3c10",
+      "skill_name": "swift-testing",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.28537780623932607,
+      "objective": 1.1471462219376067,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests?",
+          "modified_query": "Can you help me with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.020895522388059695
+        },
+        {
+          "original_query": "I want a solution for Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests",
+          "modified_query": "I want a solution for Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.020895522388059695
+        },
+        {
+          "original_query": "Please assist with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests",
+          "modified_query": "Please assist with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.021276595744680882
+        },
+        {
+          "original_query": "I need help with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests",
+          "modified_query": "I need help with Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.021538461538461506
+        },
+        {
+          "original_query": "Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests.",
+          "modified_query": "Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.08038585209003213
+        },
+        {
+          "original_query": "Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests.",
+          "modified_query": "Use when writing tests with Swift Testing (@Test, #expect, #require), migrating from XCTest, implementing async tests, or parameterizing tests.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.08038585209003213
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "skill_id": "a1b528bd-17b5-4c27-95ff-8fa2a4469ba0",
+      "skill_name": "advanced-features-2025",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.14025009326685386,
+      "objective": 1.1485974990673313,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution?",
+          "modified_query": "Can you help me with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008805031446540879
+        },
+        {
+          "original_query": "I want a solution for This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution",
+          "modified_query": "I want a solution for This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008805031446540879
+        },
+        {
+          "original_query": "Please assist with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution",
+          "modified_query": "Please assist with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008871989860583018
+        },
+        {
+          "original_query": "I need help with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution",
+          "modified_query": "I need help with This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008917197452229297
+        },
+        {
+          "original_query": "This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\",\n\"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\",\n\"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance\non advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.",
+          "modified_query": "This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.03242542153047989
+        },
+        {
+          "original_query": "This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\",\n\"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\",\n\"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance\non advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.",
+          "modified_query": "This skill should be used when the user asks about \"progressive disclosure\", \"hook automation\", \"PreToolUse hook\", \"PostToolUse hook\", \"MCP server integration\", \".mcp.json configuration\", \"team plugin distribution\", \"repository-level plugins\", \"context efficiency\", or needs guidance on advanced 2025 Claude Code plugin features including hooks, MCP, and team distribution.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.03242542153047989
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "skill_id": "a5e75fa1-be3d-42fc-b278-a37de3c7c26e",
+      "skill_name": "chatbot-analytics",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.16956424030529513,
+      "objective": 1.148304357596947,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance?",
+          "modified_query": "Can you help me with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.011308562197092087
+        },
+        {
+          "original_query": "I want a solution for Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance",
+          "modified_query": "I want a solution for Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.011308562197092087
+        },
+        {
+          "original_query": "Please assist with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance",
+          "modified_query": "Please assist with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.011419249592169667
+        },
+        {
+          "original_query": "I need help with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance",
+          "modified_query": "I need help with Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.011494252873563204
+        },
+        {
+          "original_query": "Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance.",
+          "modified_query": "Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.04201680672268904
+        },
+        {
+          "original_query": "Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance.",
+          "modified_query": "Implement AI chatbot analytics and conversation monitoring. Use when adding conversation metrics, tracking AI usage, measuring user engagement with chat, or building conversation dashboards. Activates for AI analytics, token tracking, conversation categorization, and chat performance.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.04201680672268904
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "skill_id": "037c03db-e42a-4c50-a1bd-953df515d6b9",
+      "skill_name": "ring:writing-plans",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.2694817670305042,
+      "objective": 1.147305182329695,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context?",
+          "modified_query": "Can you help me with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019607843137254943
+        },
+        {
+          "original_query": "I want a solution for Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context",
+          "modified_query": "I want a solution for Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019607843137254943
+        },
+        {
+          "original_query": "Please assist with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context",
+          "modified_query": "Please assist with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019943019943019946
+        },
+        {
+          "original_query": "I need help with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context",
+          "modified_query": "I need help with Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.02017291066282423
+        },
+        {
+          "original_query": "Creates comprehensive implementation plans with exact file paths, complete code\nexamples, and verification steps for engineers with zero codebase context.",
+          "modified_query": "Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.07507507507507505
+        },
+        {
+          "original_query": "Creates comprehensive implementation plans with exact file paths, complete code\nexamples, and verification steps for engineers with zero codebase context.",
+          "modified_query": "Creates comprehensive implementation plans with exact file paths, complete code examples, and verification steps for engineers with zero codebase context.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.07507507507507505
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "skill_id": "e7d355a5-f887-4a7c-a0fe-77aa0062364b",
+      "skill_name": "ci-cd",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.21891650347188626,
+      "objective": 1.1478108349652811,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery?",
+          "modified_query": "Can you help me with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.015452538631346546
+        },
+        {
+          "original_query": "I want a solution for CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery",
+          "modified_query": "I want a solution for CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.015452538631346546
+        },
+        {
+          "original_query": "Please assist with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery",
+          "modified_query": "Please assist with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.015659955257270708
+        },
+        {
+          "original_query": "I need help with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery",
+          "modified_query": "I need help with CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.015801354401805856
+        },
+        {
+          "original_query": "CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery.",
+          "modified_query": "CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.0582750582750583
+        },
+        {
+          "original_query": "CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery.",
+          "modified_query": "CI/CD pipeline standards for GitHub Actions, GitLab CI, and deployment automation. Covers testing gates, security scanning, artifact management, and deployment strategies for reliable software delivery.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.0582750582750583
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "skill_id": "9f488149-ebf7-4118-9d61-1acc44e9cb92",
+      "skill_name": "run-tests",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.2642006474674613,
+      "objective": 1.1473579935253253,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage?",
+          "modified_query": "Can you help me with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019178082191780854
+        },
+        {
+          "original_query": "I want a solution for Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage",
+          "modified_query": "I want a solution for Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019178082191780854
+        },
+        {
+          "original_query": "Please assist with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage",
+          "modified_query": "Please assist with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.01949860724233987
+        },
+        {
+          "original_query": "I need help with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage",
+          "modified_query": "I need help with Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.019718309859154903
+        },
+        {
+          "original_query": "Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage.",
+          "modified_query": "Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.07331378299120239
+        },
+        {
+          "original_query": "Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage.",
+          "modified_query": "Run tests for the Nomos provider project with comprehensive coverage reporting. Use this when asked to run tests, check code quality, or verify test coverage.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.07331378299120239
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "skill_id": "22d0b096-b677-4f9a-9b18-5c469f693e75",
+      "skill_name": "svelte-flow",
+      "token_propagation_before": 0.0,
+      "token_propagation_after": 1.0,
+      "token_propagation_after_llm": null,
+      "perturbation": 0.13262958518416476,
+      "objective": 1.1486737041481583,
+      "num_edits": 6,
+      "candidates_evaluated": 96,
+      "edits": [
+        {
+          "original_query": "Can you help me with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom?",
+          "modified_query": "Can you help me with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom? (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008149010477299212
+        },
+        {
+          "original_query": "I want a solution for Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom",
+          "modified_query": "I want a solution for Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008149010477299212
+        },
+        {
+          "original_query": "Please assist with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom",
+          "modified_query": "Please assist with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.008206330597889777
+        },
+        {
+          "original_query": "I need help with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom",
+          "modified_query": "I need help with Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom (NICE)",
+          "strategy": "suffix_parenthetical",
+          "perturbation": 0.00824499411071844
+        },
+        {
+          "original_query": "Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom.",
+          "modified_query": "Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.029940119760479056
+        },
+        {
+          "original_query": "Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom.",
+          "modified_query": "Build node-based editors, interactive diagrams, and flow visualizations using Svelte Flow. Use when creating workflow editors, data flow diagrams, organizational charts, mindmaps, process visualizations, DAG editors, or any interactive node-graph UI. Supports custom nodes/edges, layouts (dagre, hierarchical), animations, and advanced features like proximity connect, floating edges, and contextual zoom.. Relevant context: NICE.",
+          "strategy": "context_suffix",
+          "perturbation": 0.029940119760479056
+        }
+      ]
+    }
+  ]
+}
