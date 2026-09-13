@@ -139,6 +139,21 @@ Remove `--limit-*`/`--max-docs` flags to run the full public evaluation. Metrics
 are written to `outputs/runs/<timestamp>_evaluate_<benchmark>/metrics.json` and
 rankings are written to `--output`.
 
+## Base-Model Universal Anchor Search
+
+Optimize one shared skill sentence on a frozen base retriever using an
+AGGD-inspired token search, optional causal-LM perplexity scoring, and held-out
+four-condition retrieval evaluation. No retriever training is performed.
+
+```bash
+python scripts/optimize_universal_anchor.py \
+  --config configs/anchor/base_aggd.yaml \
+  --set ppl_model=models/gpt2
+```
+
+See [the experiment guide](docs/UNIVERSAL_ANCHOR.md) for model preparation,
+no-PPL and Top-10 ablations, input formats, and interpretation of the reports.
+
 ## Tests
 
 ```bash

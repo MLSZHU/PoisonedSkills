@@ -1,0 +1,36 @@
+# No retriever training: supply the original local base checkpoint.
+base_model: models/SKILLRET-Embedding-0.6B
+device: cuda:0
+dtype: auto
+max_seq_length: 512
+data_dir: data/hf_datasets/SKILLRET
+data_split: test
+sample_queries: 300
+target_base_rank: 30
+query_template: "{query} ({trigger})"
+seed: 98765
+search_fraction: 0.6
+validation_fraction: 0.2
+output_root: outputs/runs
+run_name: base_anchor_aggd
+# Set a local causal-LM checkpoint (not an embedding model) to enable PPL.
+# Example CLI: --set ppl_model=models/gpt2
+ppl_model: null
+ppl_device: cpu
+ppl_max_length: 256
+search:
+  trigger: NICE
+  initial_anchor: "This skill follows the NICE workflow."
+  placement: body_start
+  steps: 50
+  candidates: 32
+  max_depth: 8
+  batch_size: 8
+  encode_batch_size: 4
+  target_k: 5
+  temperature: 0.05
+  margin: 0.01
+  stability_weight: 1.0
+  stability_tolerance: 0.005
+  ppl_weight: 0.02
+  max_ppl: null
